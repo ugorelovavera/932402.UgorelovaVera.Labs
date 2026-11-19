@@ -1,15 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Главная</title>
-    <meta charset="utf-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4a90d9">
+  <title>Lab6 PWA — Home</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icons/icon-192.png">
 </head>
 <body>
-    <h1>Главная страница</h1>
-    <nav>
-        <a href="/">Главная</a> |
-        <a href="/about">О сайте</a> |
-        <a href="/api/greet/Anna?lang=ru">API</a>
-    </nav>
+  <h1>Главная страница</h1>
+  <nav>
+    <a href="/">Главная</a> |
+    <a href="/about">О сайте</a> |
+    <a href="/api/greet/Anna?lang=ru">API</a>
+  </nav>
+
+  <button id="greetBtn">Приветствовать</button>
+  <div id="output"></div>
+
+  <script src="/app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js")
+          .then(function (reg) {
+            console.log("SW registered:", reg.scope);
+          })
+          .catch(function (err) {
+            console.error("SW registration failed:", err);
+          });
+      });
+    }
+  </script>
 </body>
 </html>
